@@ -12,7 +12,7 @@ exports.list_all_users = function(req, res) {
 };
 
 exports.create_user = function(req, res) {
-  var new_user = new User(req.body);
+  var new_user = new Users(req.body);
   new_user.save(function(err, user) {
     if (err)
       res.send(err);
