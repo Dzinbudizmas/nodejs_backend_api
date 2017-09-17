@@ -1,0 +1,31 @@
+{
+  "name": "nodejs_backend_api",
+  "version": "1.0.0",
+  "description": "HomeWork",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dzinbudizmas/nodejs_backend_api.git"
+  },
+  "keywords": [
+    "RESTful",
+    "API",
+    "HomeWork"
+  ],
+  "author": "DzinBudizmas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dzinbudizmas/nodejs_backend_api/issues"
+  },
+  "homepage": "https://github.com/Dzinbudizmas/nodejs_backend_api#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
