@@ -1,7 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Orders = mongoose.model('Orders');
+  Orders = mongoose.model('Orders'),
+  Users = mongoose.model('Users'),
+  Products = mongoose.model('Products');
 
 exports.list_all_orders = function(req, res) {
   Orders.find({}, function(err, order) {
@@ -13,11 +15,40 @@ exports.list_all_orders = function(req, res) {
 
 exports.create_order = function(req, res) {
   var new_order = new Orders(req.body);
-  new_order.save(function(err, order) {
+  
+  Users.findById(new_order.user, function(err, user) {
     if (err)
       res.send(err);
-    res.json(order);
-  });
+    Products.findById(new_order.product, function(err, product){
+      if (err)
+        res.send(err);
+      // check if user has enough money
+      var pay = new_order.quantity * product.price;
+      if (user.money < pay) {
+        res.send(new Error("Not enough money"));
+      }
+      // check if product has enough quantity
+      if (product.quantity < new_order.quantity) {
+        res.send(new Error("Not enough quantity"));
+      }
+
+      // create order
+      new_order.save(function(err, order) {
+        if (err)
+          res.send(err);
+        
+        // deduct money from user
+        user.money -= pay;
+        user.save();
+
+        // update product quantity
+        product.quantity -= new_order.quantity;
+        product.save();
+
+        res.json(order);
+      })
+    })
+  })  
 };
 
 exports.read_order = function(req, res) {
@@ -45,15 +76,3 @@ exports.delete_order = function(req, res) {
     res.json({ message: 'Order successfully deleted' });
   });
 };
-
-
-
-
-/*----------------------------
-Tasks with Order:
-* - check if User has enouhg money
-* - Check if Product has enough quantity (if aabove poin pass)
-* - create Order
-* - deduct money from User
-* - update Product quantity
------------------------------------*/
