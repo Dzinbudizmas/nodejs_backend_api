@@ -4,17 +4,22 @@ var Schema = mongoose.Schema;
 
 
 var OrderSchema = new Schema({
-  user: [ {
-    type: Schema.Types.ObjecId, ref: 'User'
-   } ],
-  product: [ {
-    type: Schema.Types.ObjecId, ref: 'Product'
-   } ],
+  user: {
+    type: Schema.Types.ObjectId, 
+    ref: 'Users',
+    required: 'Specify user'
+   },
+  product: {
+    type: Schema.Types.ObjectId,
+    ref: 'Products',
+    required: 'Specify product'
+   },
   quantity: {
-    type: Number
+    type: Number,
+    required: 'Enter number'
  },
   createdOn: {
-    type: date
+    type: Date
   }    
 });
 
