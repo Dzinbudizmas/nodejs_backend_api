@@ -25,11 +25,13 @@ exports.create_order = function(req, res) {
       // check if user has enough money
       var pay = new_order.quantity * product.price;
       if (user.money < pay) {
-        res.send(new Error("Not enough money"));
+        res.send("Not enough money");
+        return;
       }
       // check if product has enough quantity
       if (product.quantity < new_order.quantity) {
-        res.send(new Error("Not enough quantity"));
+        res.send("Not enough quantity");
+        return;
       }
 
       // create order
