@@ -1,0 +1,123 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Node.js darbas",
+		"_postman_id": "ca1018cd-302e-0acc-8eaa-6fdbe9db8db4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users list",
+			"request": {
+				"url": "http://localhost:3000/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User Create",
+			"request": {
+				"url": "http://localhost:3000/users/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Product create",
+			"request": {
+				"url": "http://localhost:3000/products/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"title\" : \"morkos\", \n\"productType\" : \"food\",\n \"url\" : \"delfi.lt\",\n \"quantity\" : 5,\n  \"price\" : 2.5\n  }\n   "
+				},
+				"description": "Post product into Product list"
+			},
+			"response": []
+		},
+		{
+			"name": "Products list",
+			"request": {
+				"url": "http://localhost:3000/products/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "burokai",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Get products list"
+			},
+			"response": []
+		},
+		{
+			"name": "Orders list",
+			"request": {
+				"url": "http://localhost:3000/orders/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Order post",
+			"request": {
+				"url": "http://localhost:3000/orders/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\" : \"59bee954fdfe99126c8b5466\",\n\t\"product\" : \"59c013771ad5bc2728293662\",\n\t\"quantity\" : 4,\n\t\"createdOn\" : \"2017-01-01\"\n}"
+				},
+				"description": "Tested simplo Order post"
+			},
+			"response": []
+		}
+	]
+}
